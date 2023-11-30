@@ -6,6 +6,8 @@
 
 #define SIZE 8
 
+int biggest = 0;
+
 struct game {
 	int tiles[SIZE][SIZE];
 };
@@ -45,6 +47,15 @@ void print(struct game* g)
 	clear();
 
 	printf("%s--\n", bar);
+	printf(" Welcome to 2048!\n");
+	printf("%s--\n", bar);
+	printf(" Press i for up\n");
+	printf(" Press h for left\n");
+	printf(" Press l for right\n");
+	printf(" Press k for down\n");
+	printf("%s--\n", bar);
+	printf(" Press q to quit\n");
+	printf("%s--\n", bar);
 	for (j = SIZE - 1; j >= 0; --j) {
 		printf("|");
 		for (i = 0; i < SIZE; ++i) {
@@ -55,6 +66,8 @@ void print(struct game* g)
 		}
 		printf("|\n");
 	}
+	printf("%s--\n", bar);
+	printf(" Biggest: %d\n", biggest);
 	printf("%s--\n", bar);
 }
 
@@ -95,6 +108,8 @@ void fall_column(int* a, int* b)
 		if (a[i]) {
 			if (a[i] == prev) {
 				b[j - 1] *= 2;
+				if (b[j - 1] > biggest)
+					biggest = b[j - 1];
 				prev = 0;
 			} else {
 				b[j++] = a[i];
@@ -116,8 +131,8 @@ int same(struct game* a, struct game* b)
 {
 	int i,j;
 	for (i = 0; i < SIZE; ++i)
-	for (j = 0; j < SIZE; ++j)
-		if (a->tiles[i][j] != b->tiles[i][j])
+	 for (j = 0; j < SIZE; ++j)
+	 	if (a->tiles[i][j] != b->tiles[i][j])
 			return 0;
 	return 1;
 }
@@ -201,7 +216,7 @@ int main()
 	{
 		if (c == 999)
 			continue;
-		else if (c == 113)
+		if (c == 113)
 			break;
 		if (c == -1)
 		{
