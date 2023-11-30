@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #define SIZE 8
+#define Q_KEY 113
 
 int biggest = 0;
 
@@ -47,7 +48,16 @@ void print(struct game* g)
 	clear();
 
 	printf("%s--\n", bar);
-	printf(" Welcome to 2048!\n");
+	printf("\n");
+	printf("      $$$$$$\\   $$$$$$\\  $$\\   $$\\  $$$$$$\\\n");
+	printf("      $$  __$$\\ $$$ __$$\\ $$ |  $$ |$$  __$$\\\n");
+	printf("      \\__/  $$ |$$$$\\ $$ |$$ |  $$ |$$ /  $$ |\n");
+	printf("       $$$$$$  |$$\\$$\\$$ |$$$$$$$$ | $$$$$$  |\n");
+	printf("      $$  ____/ $$ \\$$$$ |\\_____$$ |$$  __$$< \n");
+	printf("      $$ |      $$ |\\$$$ |      $$ |$$ /  $$ |\n");
+	printf("      $$$$$$$$\\ \\$$$$$$  /      $$ |\\$$$$$$  |\n");
+	printf("      \\________| \\______/       \\__| \\______/\n");
+	printf("\n");
 	printf("%s--\n", bar);
 	printf(" Press i for up\n");
 	printf(" Press h for left\n");
@@ -184,7 +194,7 @@ int read_move(void)
 	for (i = 0; i < MOVES; ++i)
 		if (c == keys[i])
 			return i;
-	if (c == 113)
+	if (c == Q_KEY)
 		return c;
 	return 999;
 }
