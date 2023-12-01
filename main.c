@@ -6,6 +6,7 @@
 
 #define SIZE 8
 #define Q_KEY 113
+#define UNSUPPORTED_KEY 999
 
 int biggest = 0;
 
@@ -196,7 +197,7 @@ int read_move(void)
 			return i;
 	if (c == Q_KEY)
 		return c;
-	return 999;
+	return UNSUPPORTED_KEY;
 }
 
 static struct termios backup;
@@ -224,14 +225,10 @@ int main()
 	take_stdin();
 	while ((c = read_move()) != EOF)
 	{
-		if (c == 999)
+		if (c == UNSUPPORTED_KEY)
 			continue;
-		if (c == 113)
+		if (c == Q_KEY)
 			break;
-		if (c == -1)
-		{
-			continue;
-		}
 		move(&g, c);
 		print(&g);
 	}
